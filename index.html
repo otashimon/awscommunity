@@ -5,17 +5,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>採番</title>
+    <title>検索</title>
 </head>
 
 <body>
+    <select id="searchcolumn">
+                        <option value="1">ユーザID</option>
+                        <option value="2">ユーザ名</option>
+                        <option value="3">部署</option>
+                        <option value="4">メールアドレス</option>
+                </select>
     <label for="userIdLabel">ユーザID</label>
     <input type="text" name="userId" id="userId" placeholder="001941">
-    <button id="btn">採番</button>
+    <button id="btn">検索</button>
 </body>
 <script>
     // register-api
-    const api = 'https://b8gnm6ogsj.execute-api.ap-northeast-1.amazonaws.com/dev/register';
+    const api = ''; //apiのurl入れる
     var btn = document.getElementById('btn');
 
     btn.addEventListener('click', function () {
