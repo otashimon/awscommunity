@@ -9,15 +9,29 @@
 </head>
 
 <body>
-    <select id="searchcolumn">
+    <div>
+        <label for="columnLabel">カラム:</label>
+        <select id="searchcolumn">
                         <option value="1">ユーザID</option>
                         <option value="2">ユーザ名</option>
                         <option value="3">部署</option>
                         <option value="4">メールアドレス</option>
                 </select>
-    <label for="userIdLabel">ユーザID</label>
-    <input type="text" name="userId" id="userId" placeholder="001941">
+    </div>
+    <div>
+        <label for="userIdLabel">ユーザID</label>
+        <input type="text" name="textbox" id="textbox">
+    </div>
+    <div>
+        <label for="operatorLabel">検索演算子:</label>
+        <select id="searchoperator">
+                        <option value="1">AND</option>
+                        <option value="2">OR</option>
+                </select>
+    </div>
+    
     <button id="btn">検索</button>
+
 </body>
 <script>
     // register-api
