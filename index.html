@@ -19,7 +19,7 @@
              </select>
     </div>
     <div class="text">
-        <label for="Label">検索文字列：</label>
+        <label for="textLabel">検索文字列：</label>
             <input type="text" name="textbox" id="textbox">
     </div>
     <div class="opreator">
@@ -39,15 +39,15 @@
     const api = ''; //apiのurl入れる
     var btn = document.getElementById('btn');
 
-    btn.addEventListener('click', function () {
+     btn.addEventListener('click', function () {
         console.log('a'); // デバッグ表示hoge
-        regist(document.getElementById('userId'));
+        regist(document.getElementById('searchcolumn').value, document.getElementById('textbox').value), document.getElementById('searchoperator').value);
     })
 
     // 結果を取得
-    function regist(query) {
+    function regist(searchcolumn,textbox,searchoperator) {
         console.log('b'); // デバッグ表示
-        fetch(`${api}?${query}`)
+        fetch(`${api}?searchcolumn=${searchcolumn}textbox=${textbox}searchoperator=${searchoperator}`)
             .then(res => res.json())
             .then(data => reflect(data))
             .catch(error => errorReflect(error));
