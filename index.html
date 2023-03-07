@@ -39,10 +39,10 @@
     const api = 'https://b8gnm6ogsj.execute-api.ap-northeast-1.amazonaws.com/dev/search-function'; //apiのurl入れる
     var btn = document.getElementById('btn');
 
-     btn.addEventListener('click', function () {
+     btn.addEventListener('click', function () ) {
         console.log('a'); // デバッグ表示hoge
         regist(document.getElementById('searchcolumn').value, document.getElementById('searchtext').value, document.getElementById('searchoperator').value);
-    })
+    }
 
     // 結果を取得
     function regist(searchcolumn,searchtext,searchoperator) {
