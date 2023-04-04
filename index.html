@@ -5,33 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>検索</title>
+    <title>検索画面</title>
 </head>
 
 <body>
-    <div class="searchcolumn">
-        <label for="columnLabel">カラム:</label>
-            <select id="searchcolumn">
-                <option value="1">ユーザID</option>
-                <option value="2">ユーザ名</option>
-                <option value="3">部署</option>
-                <option value="4">メールアドレス</option>
-             </select>
-    </div>
     <div class="searchtext">
-        <label for="textLabel">検索文字列：</label>
-            <input type="text" name="searchtext" id="textbox">
+        <label for="searchtextLabel">ユーザID：</label>
+            <input type="text" name="searchtext" id="searchtext" placeholder="001941">
     </div>
-    <div class="searchoperator">
-        <label for="operatorLabel">検索演算子:</label>
-            <select id="searchoperator">
-                <option value="1">AND</option>
-                <option value="2">OR</option>
-            </select>
-    </div>
-    <div class="btn">
-        <div id="btn"><input type="button" value="検索" onclick="Click();"/></div>
-    </div>    
+    <button id="btn">検索</button>
     <hr>
     <a href="https://main.d3715qbrta1wwx.amplifyapp.com/">座席表</a>
     <a href="https://main.d3vkykcg3zkvui.amplifyapp.com/">検索画面</a>
@@ -41,29 +23,39 @@
 </body>
 <script>
     // register-api
-    const api = ' https://b8gnm6ogsj.execute-api.ap-northeast-1.amazonaws.com/dev/search'; //apiのurl入れる
+    const api = 'https://b8gnm6ogsj.execute-api.ap-northeast-1.amazonaws.com/dev/search'; //apiのurl入れる
     var btn = document.getElementById('btn');
 
-     btn.addEventListener('click', function () ) {
-        console.log('a'); // デバッグ表示hoge
-        regist(document.getElementById('searchcolumn').value, document.getElementById('searchtext').value, document.getElementById('searchoperator').value);
-    }
+    btn.addEventListener('click', function ()  {
+        //ダブルクリック制御
+        btn.disabled = true;
+        //console.log('a'); // デバッグ表示hoge
+        regist(document.getElementById('searchtext').value);
+//        regist(document.getElementById('searchcolumn').value, document.getElementById('searchtext').value, document.getElementById('searchoperator').value);
+    })
 
     // 結果を取得
-    function regist(searchcolumn,searchtext,searchoperator) {
-        console.log('b'); // デバッグ表示
-        fetch(`${api}?searchcolumn=${searchcolumn}searchtext=${searchtext}searchoperator=${searchoperator}`)
-            .then(res => res.json())
-            .then(data => reflect(data))
-            .catch(error => errorReflect(error));
+    async function regist(query) {
+        //console.log(`${api}?searchcolumn=${searchcolumn}`); // デバッグ表示
+        console.log(`${api}?searchcolumn=1&searchtext=${query}&searchoperator=1`); // デバッグ表示
+        //console.log(`${api}?searchoperator=${searchoperator}`); // デバッグ表示
+
+        let result = await fetch(`${api}?searchcolumn=1&searchtext=${query}&searchoperator=1`, {mode: "cors"})
+        reflect(result)
     }
     // 応答結果を表示
-    function reflect(data) {
-        console.log(data); // デバッグ表示
-        const s = "";
-        if (data.statusCode === 200) {
+    async function reflect(result) {
+        console.log(result); // デバッグ表示
+        const data = await result.json()
+        console.log(data)
+        let s = "";
+        if (result.status === 200) {
             s = `
-          <h3>${data.body.input_userid}:${data.body.output_number}</h3>
+          <h3>${data.output_name}さんの座席は${data.output_number}です。</h3>
+        `;
+        } else if (result.status === 400) {
+            s = `
+          <h3>${data.message}</h3>
         `;
         } else {
             s = `
