@@ -6,19 +6,225 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>検索画面</title>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .app {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            height: 100px;
+            font-size: 30px;
+            background-color: white;
+            box-sizing: border-box;
+            text-transform: capitalize;
+        }
+        
+        .header h1 {
+            text-align: left;
+        }
+
+        .footer {
+            height: 50px;
+            background-color: #E42149;
+            box-sizing: border-box;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .main::after{
+            content:"";
+            position: absolute;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0.7;
+        }
+        
+        .sidebar {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            width: 200px;
+            background-color: #808080;
+            box-sizing: border-box;
+            border: 1px solid white;
+            border-radius: 10px;
+        }
+
+        .content {
+            margin: 0px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex-grow: 1;
+            /*background-color: white;*/
+            background-image:url('background.png');
+            background-repeat: no-repeat;
+            background-size: 60%;
+            background-position: center;
+        }
+        
+        label {
+            position: relative;
+            z-index: 3;
+            margin-right: 10px;
+            width: 100px;
+            float: left;
+        }
+        
+        input[type="text"] {
+            width: 15em;
+            position: relative;
+            z-index: 3;
+        }
+
+        button {
+            width: 15em;
+            position: relative;
+            z-index: 3;
+            border-radius: 30px;
+        }
+        
+        h1 {
+          color: #E42149;
+          font-size: 100px;
+          margin: 0;
+          position: relative;
+          line-height: 1;
+          letter-spacing: $letter-spacing;
+
+          &:before {
+               content: attr(data-heading);
+               position: absolute;
+               left: 0;
+               top: 0;
+               color: #FFF146;
+               transform: translate(1.0%, 0);
+               mix-blend-mode: multiply;
+          }
+          
+          &:after {
+               content: attr(data-heading);
+               position: absolute;
+               left: 0;
+               top: 0;
+               color: #0091E5;
+               transform: translate(-1.0%, 0);
+               mix-blend-mode: multiply;
+          }
+        }
+        
+        a {
+            color: white;
+            transition: all 0.5s ease;
+        }
+        
+        a:hover{
+            font-size: 20px;
+        }
+        
+        /*選択画面の枠づけ*/
+        /*
+        .side1 {
+            border: 5px double #E42149;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+        */
+        .side2 {
+            border: 5px double #E42149;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+        /*
+        .side3 {
+            border: 5px double #E42149;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+        .side4 {
+            border: 5px double #E42149;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+        }
+        */
+        
+        
+        
+        .side1:hover {
+            background-color: #E42149;
+            border-radius: 10px;
+        }
+        .side2:hover {
+            background-color: #E42149;
+            border-radius: 10px;
+        }
+        .side3:hover {
+            background-color: #E42149;
+            border-radius: 10px;
+        }
+        .side4:hover {
+            background-color: #E42149;
+            border-radius: 10px;
+        }
+        
+        .formTitle {
+            font-size:20px;
+        }
+        
+        ul {
+            z-index: 3;
+        }
+        
+        ul li{
+            list-style: none;
+        }
+        
+    </style>
 </head>
 
 <body>
+    <div class="app">
+        <div class="header">
+            <h1 data-heading="Seat  Decision  System">Seat  Decision  System</h1>
+        </div>
+        <div class="main">
+            <div class="sidebar">
+                <div class="side1"><a href="https://main.d3715qbrta1wwx.amplifyapp.com/">座席表</a></div>
+                <hr>
+                <div class="side2"><a href="https://main.d3vkykcg3zkvui.amplifyapp.com/">検索画面</a></div>
+                <hr>
+                <div class="side3"><a href="https://main.dh2s54ysidjqd.amplifyapp.com/">ユーザ登録画面</a></div>
+                <hr>
+                <div class="side4"><a href="https://test.datms6bdmb4qa.amplifyapp.com/">採番画面</a></div>
+                <hr>
+            </div>
+            <div class="content">
     <div class="searchtext">
         <label for="searchtextLabel">ユーザID：</label>
             <input type="text" name="searchtext" id="searchtext" placeholder="001941">
     </div>
     <button id="btn">検索</button>
-    <hr>
-    <a href="https://main.d3715qbrta1wwx.amplifyapp.com/">座席表</a>
-    <a href="https://test.d3vkykcg3zkvui.amplifyapp.com/">検索画面</a>
-    <a href="https://main.dh2s54ysidjqd.amplifyapp.com/">ユーザ登録画面</a>
-    <a href="https://test.datms6bdmb4qa.amplifyapp.com/">採番画面</a>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
 
 </body>
 <script>
